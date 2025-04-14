@@ -26,6 +26,7 @@ target_include_directories(cmake_examples_inst
 ############################################################
 
 # wyh 添加exe依赖的so的搜索路径，需要放在add_exe前面
+# wyh $ORIGIN代表exe的安装路径，不能用${PROJECT_SOURCE_DIR}，因为这是运行时路径
 set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
 
 # Add an executable with the above sources
