@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.5)
 
 project(cmake_examples_install)
 
+# wyh 设置默认安装路径，不必再在cmake .. -DCMAKE_INSTALL_PREFIX=/install/location
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+  set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install" CACHE PATH "Install path" FORCE)
+endif()
+
 ############################################################
 # Create a library
 ############################################################
@@ -19,6 +24,9 @@ target_include_directories(cmake_examples_inst
 ############################################################
 # Create an executable
 ############################################################
+
+# wyh 添加exe依赖的so的搜索路径，需要放在add_exe前面
+set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
 
 # Add an executable with the above sources
 add_executable(cmake_examples_inst_bin
